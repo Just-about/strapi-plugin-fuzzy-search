@@ -15,6 +15,8 @@ export default async function getResult(
     const items = await strapi.entityService.findMany(contentType.model.uid, {
       ...(filters && { filters }),
       ...(locale && { locale }),
+    }, {
+      populate: ['community', 'poll', 'bounty', 'thread.community', 'parent'],
     });
 
     return {
